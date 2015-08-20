@@ -1,0 +1,5 @@
+My sokoban version is sokoan.rb.  See there for more info.
+
+/example contains a port of the solution given in http://rubyquiz.com/quiz5.html.
+
+/metrics contains saikuro and flog scores for my code versus the example.

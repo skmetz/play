@@ -1,0 +1,12 @@
+   268.5: flog total
+     5.8: flog/method average
+
+    49.1: Sokoban::PushCrateRule#move      sokoban.rb:231
+    26.8: Sokoban::MoveIntoOpenishSpaceRule#move sokoban.rb:209
+    22.3: Sokoban::Game#play               sokoban.rb:87
+    14.6: Board#coordinate_of              sokoban.rb:303
+    14.3: Direction#relative_movement      sokoban.rb:332
+     9.7: Board#adjacent_coordinate        sokoban.rb:298
+     9.1: Sokoban::Rules#movement_rule_for sokoban.rb:146
+     8.2: Sokoban::Game#movement_rule_for  sokoban.rb:120
+     7.4: Board::for                       sokoban.rb:263

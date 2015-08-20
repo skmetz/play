@@ -1,0 +1,6 @@
+   101.1: flog total
+    10.1: flog/method average
+
+    40.5: Level#move                       example/sokoban.rb:40
+    19.5: main#none
+    18.7: Level#play                       example/sokoban.rb:14
