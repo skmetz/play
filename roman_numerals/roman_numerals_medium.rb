@@ -8,13 +8,13 @@ end
 
 class RomanNumerals
   ROMAN_NUMERALS = {
-       1 => 'I',
-       5 => 'V',
-      10 => 'X',
-      50 => 'L',
-     100 => 'C',
+    1000 => 'M',
      500 => 'D',
-    1000 => 'M' }
+     100 => 'C',
+      50 => 'L',
+      10 => 'X',
+       5 => 'V',
+       1 => 'I'  }
 
   attr_reader :number, :additive, :subtractive
 
@@ -30,7 +30,7 @@ class RomanNumerals
 
   def to_additive
     result = ''
-    ROMAN_NUMERALS.keys.reverse.reduce(number) {|to_be_converted, base_10_value|
+    ROMAN_NUMERALS.keys.reduce(number) {|to_be_converted, base_10_value|
       num_chars_needed, remainder = to_be_converted.divmod(base_10_value)
       result << ROMAN_NUMERALS[base_10_value] * num_chars_needed
       remainder

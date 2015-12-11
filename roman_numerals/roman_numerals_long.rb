@@ -11,14 +11,13 @@ class RomanNumerals
   include Singleton
 
   ROMAN_NUMERALS = {
-       1 => 'I',
-       5 => 'V',
-      10 => 'X',
-      50 => 'L',
-     100 => 'C',
+    1000 => 'M',
      500 => 'D',
-    1000 => 'M'
-  }
+     100 => 'C',
+      50 => 'L',
+      10 => 'X',
+       5 => 'V',
+       1 => 'I'  }
 
   SUBTRACTIVE_ROMAN = {
     'DCCCC' => 'CM',  # 900
@@ -26,8 +25,7 @@ class RomanNumerals
     'LXXXX' => 'XC',  # 90
     'XXXX'  => 'XL',  # 40
     'VIIII' => 'IX',  # 9
-    'IIII'  => 'IV'   # 4
-  }
+    'IIII'  => 'IV' } # 4
 
   def to_roman(number)
     to_subtractive_roman(to_additive_roman(number))
@@ -70,7 +68,7 @@ class RomanNumerals
   end
 
   def base_10_candidates
-    ROMAN_NUMERALS.keys.reverse
+    ROMAN_NUMERALS.keys
   end
 
   def roman_char(number)
