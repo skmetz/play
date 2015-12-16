@@ -1,7 +1,7 @@
 module Roman
   refine Fixnum do
     def to_roman
-      RomanNumerals.new(self).to_s
+      RomanNumerals.new.to_s(self)
     end
   end
 
@@ -12,6 +12,11 @@ module Roman
 
     def to_additive_roman
       RomanNumeralConversion.new(self).to_additive
+    end
+
+    alias_method :to_i_orig, :to_i
+    def to_i(type=nil)
+      type == :roman ? RomanNumerals.new.to_i(self) : self.to_i_orig
     end
   end
 end
@@ -28,24 +33,28 @@ class RomanNumerals
        5 => 'V',
        1 => 'I'  }
 
-  attr_reader :number
-
-  def initialize(number)
-    @number = number
+  def to_s(num)
+    to_roman(num)
   end
 
-  def to_s
-    convert.to_subtractive_roman
+  def to_i(str)
+    to_number(str)
   end
 
-  def convert
+  def to_roman(number)
     result = ''
     ROMAN_NUMERALS.keys.reduce(number) {|to_be_converted, base_10_value|
       num_chars_needed, remainder = to_be_converted.divmod(base_10_value)
       result << ROMAN_NUMERALS[base_10_value] * num_chars_needed
       remainder
     }
-    result
+    result.to_subtractive_roman
+  end
+
+  def to_number(roman)
+    roman.to_additive_roman.chars.reduce(0) {|total, roman_letter|
+      total += ROMAN_NUMERALS.invert[roman_letter]
+    }
   end
 end
 
@@ -78,3 +87,14 @@ class RomanNumeralConversion
     }
   end
 end
+
+# My third try.  This is internally consistent, and this form makes it
+# easy to convert number-roman and roman-number. The class names still annoy
+# me, but names are hard. :-)
+#
+# I wonder about the wisdom of aliasing to_i in the String refinement, but
+# at least the way I don't break the regular string.to_i.  However, The
+# whole to_i(:roman) thing might be a mistake.  I couldn't stand to name the
+# string refinemnt to_i_from_roman, or roman_to_i. Names, yes, are hard.
+#
+# All in all, I like this implementation the best.  Its symetry pleases me.

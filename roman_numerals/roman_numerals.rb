@@ -47,3 +47,6 @@ class RomanNumerals
     }
   end
 end
+
+# My first stab at this.  roman_numerals_long is an attempt to give this code
+# better names.
