@@ -66,11 +66,15 @@ class ArrayToSpiral
   end
 
   def row_width_is_1?
-    normal.first.size == 1
+    width_is_1?(normal)
   end
 
   def col_width_is_1?
-    transposed.first.size == 1
+    width_is_1?(transposed)
+  end
+
+  def width_is_1?(data)
+    data.first.size == 1
   end
 
   def remove_outer_box
