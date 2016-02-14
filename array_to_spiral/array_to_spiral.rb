@@ -1,13 +1,36 @@
+module Spiralize
+  refine Array do
+    def flip(to=:clockwise)
+      if to == :clockwise
+        self
+      else
+        self.transpose
+      end
+    end
+
+    def turn(to=:top_left)
+      num_rotations(to).times.inject(self) {|result, n| result.transpose.reverse}
+    end
+
+    def num_rotations(to)
+      return 0 if to == :top_left
+      return 1 if to == :top_right
+      return 2 if to == :bottom_right
+      return 3 if to == :bottom_left
+    end
+  end
+end
+
+using Spiralize
+
 class ArrayToSpiral
-  attr_reader :initial_data, :normal, :transposed, :origin, :spiral
+  attr_reader :normal, :transposed, :spiral
   def initialize(data:, origin: :top_left, direction: :clockwise)
+    initial_data = data.turn(origin).flip(direction)
 
-    @initial_data = set_initial_data(data, direction, origin)
+    @normal      = initial_data
+    @transposed  = initial_data.transpose
 
-    @normal     = initial_data
-    @transposed = initial_data.transpose
-
-    @origin = origin
     calculate_spiral
   end
 
@@ -16,10 +39,6 @@ class ArrayToSpiral
   end
 
   private
-
-  def set_initial_data(data, direction, origin)
-    transpose(rotate(data, num_rotations(origin)), direction)
-  end
 
   def calculate_spiral
     @spiral = []
@@ -37,7 +56,7 @@ class ArrayToSpiral
   end
 
   def flatten_four_sided_box
-    last_in_col = normal.first.size - 1
+    last_in_col = normal.first.size     - 1
     last_in_row = transposed.first.size - 1
 
     (normal.first[0,last_in_col] +
@@ -64,24 +83,4 @@ class ArrayToSpiral
     @normal     = normal[1..-2].transpose[1..-2].transpose
     @transposed = normal.transpose
   end
-
-  def rotate(data, num_times)
-    num_times.times.inject(data) {|result, n| result.transpose.reverse}
-  end
-
-  def transpose(data, direction)
-    if direction == :clockwise
-      data
-    else
-      data.transpose
-    end
-  end
-
-  def num_rotations(origin)
-    return 0 if origin == :top_left
-    return 1 if origin == :top_right
-    return 2 if origin == :bottom_right
-    return 3 if origin == :bottom_left
-  end
-
 end
