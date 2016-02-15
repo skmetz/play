@@ -34,7 +34,7 @@ class Spiral
     calculate_spiral
   end
 
-  def to_s
+  def to_a
     spiral
   end
 
