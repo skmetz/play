@@ -1,8 +1,8 @@
 gem 'minitest', '>= 5.0.0'
 require 'minitest/autorun'
-require_relative 'array_to_spiral'
+require_relative 'spiral'
 
-class ArrayToSpiralTest < Minitest::Test
+class SpiralTest < Minitest::Test
 
   def test_2x2
     data = [%w[a b],
@@ -10,7 +10,7 @@ class ArrayToSpiralTest < Minitest::Test
 
     expected = %w[a b d c]
 
-    assert_equal expected, ArrayToSpiral.new(data: data).to_s
+    assert_equal expected, Spiral.new(data: data).to_s
   end
 
   def test_4x4
@@ -21,7 +21,7 @@ class ArrayToSpiralTest < Minitest::Test
 
     expected = %w[a b c d h l p o n m i e f g k j]
 
-    assert_equal expected, ArrayToSpiral.new(data: data).to_s
+    assert_equal expected, Spiral.new(data: data).to_s
   end
 
   def test_3x4
@@ -32,7 +32,7 @@ class ArrayToSpiralTest < Minitest::Test
 
     expected = %w[a b c f i l k j g d e h]
 
-    assert_equal expected, ArrayToSpiral.new(data: data).to_s
+    assert_equal expected, Spiral.new(data: data).to_s
   end
 
   def test_3x5
@@ -44,7 +44,7 @@ class ArrayToSpiralTest < Minitest::Test
 
     expected = %w[a b c f i l o n m j g d e h k]
 
-    assert_equal expected, ArrayToSpiral.new(data: data).to_s
+    assert_equal expected, Spiral.new(data: data).to_s
   end
 
   def test_5x3
@@ -54,7 +54,7 @@ class ArrayToSpiralTest < Minitest::Test
 
     expected = %w[a b c d e j o n m l k f g h i]
 
-    assert_equal expected, ArrayToSpiral.new(data: data).to_s
+    assert_equal expected, Spiral.new(data: data).to_s
   end
 
   def test_5x4
@@ -65,7 +65,7 @@ class ArrayToSpiralTest < Minitest::Test
 
     expected = %w[a b c d e j o t s r q p k f g h i n m l]
 
-    assert_equal expected, ArrayToSpiral.new(data: data).to_s
+    assert_equal expected, Spiral.new(data: data).to_s
   end
 
   def test_2x2_counterclockwise
@@ -75,7 +75,7 @@ class ArrayToSpiralTest < Minitest::Test
     expected = %w[a c d b]
 
     assert_equal expected,
-                ArrayToSpiral.new(data: data, direction: :counterclockwise).to_s
+                Spiral.new(data: data, direction: :counterclockwise).to_s
   end
 
   def test_5x4_counterclockwise
@@ -87,7 +87,7 @@ class ArrayToSpiralTest < Minitest::Test
     expected = %w[a f k p q r s t o j e d c b g l m n i h]
 
     assert_equal expected,
-                ArrayToSpiral.new(data: data, direction: :counterclockwise).to_s
+                Spiral.new(data: data, direction: :counterclockwise).to_s
   end
 
 
@@ -100,7 +100,7 @@ class ArrayToSpiralTest < Minitest::Test
     expected = %w[e j o t s r q p k f a b c d i n m l g h]
 
     assert_equal expected,
-                ArrayToSpiral.new(data: data, origin: :top_right).to_s
+                Spiral.new(data: data, origin: :top_right).to_s
   end
 
   def test_5x4_from_bottom_right
@@ -112,7 +112,7 @@ class ArrayToSpiralTest < Minitest::Test
     expected = %w[t s r q p k f a b c d e j o n m l g h i]
 
     assert_equal expected,
-                ArrayToSpiral.new(data: data, origin: :bottom_right).to_s
+                Spiral.new(data: data, origin: :bottom_right).to_s
   end
 
   def test_5x4_from_bottom_left
@@ -124,7 +124,7 @@ class ArrayToSpiralTest < Minitest::Test
     expected = %w[p k f a b c d e j o t s r q l g h i n m]
 
     assert_equal expected,
-                ArrayToSpiral.new(data: data, origin: :bottom_left).to_s
+                Spiral.new(data: data, origin: :bottom_left).to_s
   end
 
 
@@ -137,7 +137,7 @@ class ArrayToSpiralTest < Minitest::Test
     expected = %w[p q r s t o j e d c b a f k l m n i h g]
 
     assert_equal expected,
-                ArrayToSpiral.new(data: data,
+                Spiral.new(data: data,
                                   direction: :counterclockwise,
                                   origin: :bottom_left).to_s
   end

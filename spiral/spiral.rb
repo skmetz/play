@@ -23,7 +23,7 @@ end
 
 using Spiralize
 
-class ArrayToSpiral
+class Spiral
   attr_reader :normal, :transposed, :spiral
   def initialize(data:, origin: :top_left, direction: :clockwise)
     initial_data = data.turn(origin).flip(direction)
