@@ -26,7 +26,7 @@ using Spiralize
 class Spiral
   attr_reader :normal, :transposed, :spiral
   def initialize(data:, origin: :top_left, direction: :clockwise)
-    initial_data = data.turn(origin).flip(direction)
+    initial_data = data.turn(origin).flip(direction) # This cries out to be injected in data's place
 
     @normal      = initial_data
     @transposed  = initial_data.transpose
