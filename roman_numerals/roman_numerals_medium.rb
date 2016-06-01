@@ -15,8 +15,8 @@ module Roman
     end
 
     alias_method :to_i_orig, :to_i
-    def to_i(type=nil)
-      type == :roman ? RomanNumerals.new.to_i(self) : self.to_i_orig
+    def to_i(base=10, type: nil)
+      type && type == :roman ? RomanNumerals.new.to_i(self) : self.to_i_orig(base)
     end
   end
 end
