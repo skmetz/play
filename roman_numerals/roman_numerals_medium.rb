@@ -97,4 +97,4 @@ end
 # whole to_i(:roman) thing might be a mistake.  I couldn't stand to name the
 # string refinemnt to_i_from_roman, or roman_to_i. Names, yes, are hard.
 #
-# All in all, I like this implementation the best.  Its symetry pleases me.
+# All in all, I like this implementation the best.  Its symmetry pleases me.
