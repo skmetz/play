@@ -42,13 +42,11 @@ class RomanNumerals
   end
 
   def to_roman(number)
-    result = ''
-    ROMAN_NUMERALS.keys.reduce(number) {|to_be_converted, base_10_value|
+    ROMAN_NUMERALS.keys.reduce(['', number]) {|(result, to_be_converted), base_10_value|
       num_chars_needed, remainder = to_be_converted.divmod(base_10_value)
       result << ROMAN_NUMERALS[base_10_value] * num_chars_needed
-      remainder
-    }
-    result.to_subtractive_roman
+      [result, remainder]
+    }.first.to_subtractive_roman
   end
 
   def to_number(roman)
